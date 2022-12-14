@@ -41,6 +41,7 @@ public class ChatsActivity extends AppCompatActivity
     static final String TAG_FRAGMENT_NAME = "fragment";
     static final String FRAGMENT_CHATLIST = "contacts";
     static final String FRAGMENT_ACCOUNT_INFO = "account_info";
+    static final String FRAGMENT_DISCOVER = "discover";
     static final String FRAGMENT_AVATAR_PREVIEW = "avatar_preview";
     static final String FRAGMENT_ACC_HELP = "acc_help";
     static final String FRAGMENT_ACC_NOTIFICATIONS = "acc_notifications";
@@ -153,6 +154,9 @@ public class ChatsActivity extends AppCompatActivity
             switch (tag) {
                 case FRAGMENT_ACCOUNT_INFO:
                     fragment = new AccountInfoFragment();
+                    break;
+                case FRAGMENT_DISCOVER:
+                    fragment = new DiscoverFragment();
                     break;
                 case FRAGMENT_ACC_HELP:
                     fragment = new AccHelpFragment();

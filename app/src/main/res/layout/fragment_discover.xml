@@ -1,0 +1,175 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_default_margin"
+    android:orientation="vertical"
+    tools:context=".DiscoverFragment">
+
+
+    <TextView
+        android:id="@+id/verified"
+        style="?android:textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:minHeight="32dp"
+        android:text="@string/badge_verified"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_verified" />
+
+    <TextView
+        android:id="@+id/staff"
+        style="?android:textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:minHeight="32dp"
+        android:text="@string/badge_staff"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_verified_user" />
+
+    <TextView
+        android:id="@+id/danger"
+        style="?android:textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:minHeight="32dp"
+        android:text="@string/badge_danger"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_danger" />
+
+    <LinearLayout
+        android:id="@+id/topicDescriptionWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/sectionTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description" />
+
+        <TextView
+            android:id="@+id/topicDescription"
+            style="@style/textSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_padding"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textIsSelectable="false"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bt_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/listPreferredItemHeight">
+
+        <ImageView
+            android:layout_width="@dimen/settings_icon_size"
+            android:layout_height="@dimen/settings_icon_size"
+            android:src="@drawable/music"
+            app:tint="@color/colorAccent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="音乐" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bt_plane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/listPreferredItemHeight">
+
+        <ImageView
+            android:layout_width="@dimen/settings_icon_size"
+            android:layout_height="@dimen/settings_icon_size"
+            android:src="@drawable/plane"
+            app:tint="@color/colorAccent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="飞机" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bt_puzzle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/listPreferredItemHeight">
+
+        <ImageView
+            android:layout_width="@dimen/settings_icon_size"
+            android:layout_height="@dimen/settings_icon_size"
+            android:src="@drawable/puzzle"
+            app:tint="@color/colorAccent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="拼图" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bt_tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/listPreferredItemHeight">
+
+        <ImageView
+            android:layout_width="@dimen/settings_icon_size"
+            android:layout_height="@dimen/settings_icon_size"
+            android:src="@drawable/tool"
+            app:tint="@color/colorAccent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="工具" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -30,7 +30,6 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -104,7 +103,7 @@ public class TindroidApp extends Application implements DefaultLifecycleObserver
     }
 
     public static boolean getDefaultTLS() {
-        return !isEmulator();
+        return false;
     }
 
     public static void retainCache(Cache cache) {
@@ -168,9 +167,6 @@ public class TindroidApp extends Application implements DefaultLifecycleObserver
         } catch (PackageManager.NameNotFoundException e) {
             Log.w(TAG, "Failed to retrieve app version", e);
         }
-
-        // Disable Crashlytics for debug builds.
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
 
         BroadcastReceiver br = new BroadcastReceiver() {
             @Override

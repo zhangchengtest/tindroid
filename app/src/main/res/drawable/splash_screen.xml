@@ -4,12 +4,22 @@
 
     <item android:drawable="@color/colorSplashScreenBackground" />
 
-    <item>
+    <item android:top="200dp">
         <bitmap
-            android:src="@drawable/logo_src"
-            android:width="128dp"
-            android:height="128dp"
+            android:src="@drawable/hy"
             android:gravity="center"/>
+
+
     </item>
+    <item android:bottom="100dp">
+        <bitmap
+            android:src="@drawable/logo_flash"
+            android:gravity="center"/>
+
+
+    </item>
+
+
+
 
 </layer-list>

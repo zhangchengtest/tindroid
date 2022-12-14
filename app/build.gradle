@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'com.huawei.agconnect'
 
 // See explanation here: https://stackoverflow.com/questions/20562189/sign-apk-without-putting-keystore-info-in-build-gradle
 def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -12,16 +11,18 @@ android {
     compileSdkVersion 32
 
     signingConfigs {
-        release {
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+        config {
+            storeFile file('chatcert2.jks')
+            keyAlias 'cheng'
+            keyPassword 'android'
+            storePassword 'android'
+            v1SigningEnabled true
+            v2SigningEnabled true
         }
     }
 
     defaultConfig {
-        applicationId "co.tinode.tindroidx"
+        applicationId "co.tinode.tindroid"
         minSdkVersion 24
         targetSdkVersion 32
         vectorDrawables.useSupportLibrary = true
@@ -38,14 +39,14 @@ android {
 
     buildTypes {
         debug {
-            resValue "string", "default_host_name", '"sandbox.tinode.co"'
+            resValue "string", "default_host_name", '"13.228.240.187:6060"'
         }
         release {
-            resValue "string", "default_host_name", '"api.tinode.co"'
+            resValue "string", "default_host_name", '"13.228.240.187:6060"'
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.config
         }
     }
 
@@ -91,16 +92,16 @@ dependencies {
     implementation 'androidx.work:work-runtime:2.7.1'
 
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.google.android.material:material:1.7.0'
-    implementation 'com.google.firebase:firebase-core:21.1.1'
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
-    implementation 'com.google.firebase:firebase-messaging:23.1.0'
 
     // Don't change to 2.7182... The 2.8 is the latest.
     // noinspection GradleDependency
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation(name: 'google-webrtc-1.0.32006', ext: 'aar')
+
+    // 接入华为厂商
+    implementation 'com.huawei.hms:push:6.3.0.304'
+
 
     annotationProcessor 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
 }

@@ -34,6 +34,7 @@
 
     <!-- Menu actions -->
     <string name="action_settings">设置</string>
+    <string name="action_discover">发现</string>
     <string name="action_delete">删除</string>
     <string name="action_mute">静默回话</string>
     <string name="action_unmute">静默回话取消</string>

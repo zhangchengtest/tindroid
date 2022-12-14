@@ -4,7 +4,11 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-
+        // hms
+        maven {
+            url 'http://developer.huawei.com/repo/'
+            allowInsecureProtocol = true
+        }
         maven { url 'https://maven.google.com/' }
     }
     dependencies {
@@ -21,6 +25,9 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        // fcm
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+
     }
 }
 
@@ -35,7 +42,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-
+        // hms
+        maven {
+            url 'http://developer.huawei.com/repo/'
+            allowInsecureProtocol = true
+        }
         maven { url 'https://maven.google.com/' }
         flatDir {
             dirs 'src/main/libs'
@@ -62,7 +73,7 @@ static def gitVersionCode() {
 static def gitVersionName() {
     // If you are not compiling in a git directory, you should manually assign version name:
     //  return "MyVersionName"
-    def process = "git describe --tags".execute()
+//    def process = "git describe --tags".execute()
     // Remove trailing CR and remove leading 'v' as in 'v1.2.3'
-    return process.text.trim().substring(1)
+    return "1.2.3"
 }

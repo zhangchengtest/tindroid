@@ -39,7 +39,7 @@ import co.tinode.tinodesdk.model.ServerMessage;
 public class ChatsFragment extends Fragment implements ActionMode.Callback, UiUtils.ProgressIndicator {
     private static final String TAG = "ChatsFragment";
 
-    private static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 1001;
+//    private static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 1001;
 
     private Boolean mIsArchive;
     private Boolean mIsBanned;
@@ -181,35 +181,35 @@ public class ChatsFragment extends Fragment implements ActionMode.Callback, UiUt
 
         // This is needed in order to accept video calls while the app is in the background.
         // It should be already granted to apps in playstore, but needed when developing.
-        if (!Settings.canDrawOverlays(activity)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + activity.getPackageName()));
-            try {
-                //noinspection deprecation: registerForActivityResult does not work for this permission.
-                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
-            } catch (ActivityNotFoundException ignored) {
-                Log.w(TAG, "Unable to enable overlays, incoming calls limited.");
-                Toast.makeText(activity, R.string.voice_calls_limited, Toast.LENGTH_LONG).show();
-            }
-        }
+//        if (!Settings.canDrawOverlays(activity)) {
+//            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+//                    Uri.parse("package:" + activity.getPackageName()));
+//            try {
+//                //noinspection deprecation: registerForActivityResult does not work for this permission.
+//                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+//            } catch (ActivityNotFoundException ignored) {
+//                Log.w(TAG, "Unable to enable overlays, incoming calls limited.");
+//                Toast.makeText(activity, R.string.voice_calls_limited, Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
     // The registerForActivityResult does not work for this permission.
     @SuppressWarnings("deprecation")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
-            final Activity activity = getActivity();
-            if (activity == null) {
-                return;
-            }
-
-            if (!Settings.canDrawOverlays(activity)) {
-                // User rejected request.
-                Log.w(TAG, "Incoming voice calls will be limited");
-                Toast.makeText(activity, R.string.voice_calls_limited, Toast.LENGTH_LONG).show();
-            }
-        }
+//        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
+//            final Activity activity = getActivity();
+//            if (activity == null) {
+//                return;
+//            }
+//
+//            if (!Settings.canDrawOverlays(activity)) {
+//                // User rejected request.
+//                Log.w(TAG, "Incoming voice calls will be limited");
+//                Toast.makeText(activity, R.string.voice_calls_limited, Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
     @Override
@@ -246,7 +246,10 @@ public class ChatsFragment extends Fragment implements ActionMode.Callback, UiUt
         } else if (id == R.id.action_settings) {
             activity.showFragment(ChatsActivity.FRAGMENT_ACCOUNT_INFO, null);
             return true;
-        } else if (id == R.id.action_offline) {
+        } else if (id == R.id.action_discover) {
+            activity.showFragment(ChatsActivity.FRAGMENT_DISCOVER, null);
+            return true;
+        }else if (id == R.id.action_offline) {
             Cache.getTinode().reconnectNow(true, false, false);
         }
         return false;

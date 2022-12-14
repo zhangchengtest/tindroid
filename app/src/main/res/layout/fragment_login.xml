@@ -12,28 +12,20 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:src="@drawable/logo_src"
+        android:layout_height="60dp"
+        android:src="@drawable/logo_flash"
         android:layout_alignParentStart="true"
         android:id="@+id/imageLogo"
         android:layout_alignParentTop="true"
         android:contentDescription="@string/tinode_logo"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/app_description"
-        android:id="@+id/appTitle"
-        android:layout_below="@+id/imageLogo"
-        android:layout_marginBottom="8dp"
-        android:layout_centerHorizontal="true" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editLoginWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appTitle"
+        android:layout_below="@+id/imageLogo"
         android:hint="@string/login_hint"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp">

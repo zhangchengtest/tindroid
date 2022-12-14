@@ -34,11 +34,11 @@
     <!-- Record audio messages -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- Needed for audio visualization and audio recording adjustments. -->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<!--    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />-->
     <!-- Needed for incoming call notifications -->
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+<!--    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
@@ -55,12 +55,11 @@
 
     <application
         android:name=".TindroidApp"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:allowBackup="false"
         android:requestLegacyExternalStorage="true"
         tools:ignore="AllowBackup"
         tools:targetApi="q">
@@ -161,13 +160,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            android:theme="@style/LicensesTheme" />
 
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/LicensesTheme" />
 
         <service
             android:name=".services.TinodeAccountService"
@@ -196,15 +189,7 @@
                 android:name="android.provider.CONTACTS_STRUCTURE"
                 android:resource="@xml/contacts_source"/>
         </service>
-        <!-- FirebaseMessagingService performs security checks at runtime,
-             no need for explicit permissions despite exported="true".
-             Using tools:ignore="ExportedService" to disable the warning -->
-        <service android:name=".services.FBaseMessagingService"
-            android:exported="true" tools:ignore="ExportedService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -215,6 +200,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+
+
+
+
     </application>
 
 </manifest>

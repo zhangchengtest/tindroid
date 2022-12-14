@@ -2,8 +2,6 @@ package co.tinode.tindroid;
 
 import android.os.Build;
 
-import com.google.firebase.messaging.FirebaseMessaging;
-
 import java.util.Locale;
 
 import co.tinode.tindroid.db.BaseDb;
@@ -50,15 +48,7 @@ public class Cache {
             TindroidApp.retainCache(sInstance);
         }
 
-        FirebaseMessaging fbId = FirebaseMessaging.getInstance();
-        //noinspection ConstantConditions: Google lies about getInstance not returning null.
-        if (fbId != null) {
-            fbId.getToken().addOnSuccessListener(token -> {
-                if (sInstance.mTinode != null) {
-                    sInstance.mTinode.setDeviceToken(token);
-                }
-            });
-        }
+
         return sInstance.mTinode;
     }
 
@@ -70,7 +60,6 @@ public class Cache {
             sInstance.mTinode.logout();
             sInstance.mTinode = null;
         }
-        FirebaseMessaging.getInstance().deleteToken();
     }
 
     public static CallInProgress getCallInProgress() {

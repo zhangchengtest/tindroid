@@ -4,10 +4,10 @@
     <string name="tinode_url" translatable="false">https://tinode.co</string>
     <string name="emulator_host_name" translatable="false">10.0.2.2:6060</string>
 
-    <string name="app_name" translatable="false">Tinode</string>
-    <string name="app_name_full" translatable="false">Tinode Chat</string>
+    <string name="app_name" translatable="false">荒原</string>
+    <string name="app_name_full" translatable="false">荒原</string>
     <string name="app_version">Version</string>
-    <string name="copyright" translatable="false">© 2014 – 2022 Tinode</string>
+    <string name="copyright" translatable="false">© 2014 – 2022 hy</string>
     <string name="tinode" translatable="false">Tinode</string>
 
     <string name="login_hint">Login</string>
@@ -18,7 +18,7 @@
     <string name="send_file_button_hint">Send file</string>
 
     <string name="sign_in">Sign In</string>
-    <string name="app_description" translatable="false">Tinode Chat</string>
+    <string name="app_description" translatable="false">荒原</string>
     <string name="action_signup">Sign Up</string>
     <string name="sign_up">Sign Up</string>
     <string name="login_new">Login</string>
@@ -44,6 +44,7 @@
 
     <!-- Menu actions -->
     <string name="action_settings">Settings</string>
+    <string name="action_discover" translatable="false">Discover</string>
     <string name="action_delete">Delete</string>
     <string name="action_mute">Mute conversation</string>
     <string name="action_unmute">Unmute conversation</string>
