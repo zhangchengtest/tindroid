@@ -40,6 +40,7 @@ android {
     buildTypes {
         debug {
             resValue "string", "default_host_name", '"13.228.240.187:6060"'
+            signingConfig signingConfigs.config
         }
         release {
             resValue "string", "default_host_name", '"13.228.240.187:6060"'

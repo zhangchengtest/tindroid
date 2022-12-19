@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 
 import java.util.List;
@@ -16,6 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.huawei.hms.aaid.HmsInstanceId;
+import com.huawei.hms.common.ApiException;
+
 import co.tinode.tindroid.account.ContactsManager;
 import co.tinode.tindroid.account.Utils;
 import co.tinode.tindroid.media.VxCard;
@@ -60,6 +65,21 @@ public class ChatsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    // read from agconnect-services.json
+                    String appId = "107489055";
+                    String token = HmsInstanceId.getInstance(ChatsActivity.this).getToken(appId, "HCM");
+                    Log.i(TAG, "get token:" + token);
+
+                } catch (ApiException e) {
+                    Log.e(TAG, "get token failed, " + e);
+                }
+            }
+        }.start();
 
         setContentView(R.layout.activity_contacts);
 

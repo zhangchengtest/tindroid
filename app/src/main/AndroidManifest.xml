@@ -201,6 +201,13 @@
                 android:resource="@xml/provider_paths"/>
         </provider>
 
+        <service
+            android:name=".util.push.MyPushService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
 
 
