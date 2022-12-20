@@ -87,13 +87,13 @@ public class ChatsActivity extends AppCompatActivity
 
         FragmentManager fm = getSupportFragmentManager();
 
-        if (fm.findFragmentByTag(FRAGMENT_CHATLIST) == null) {
-            Fragment fragment = new ChatsFragment();
+//        if (fm.findFragmentByTag(FRAGMENT_DISCOVER) == null) {
+            Fragment fragment = new PuzzleFragment();
             fm.beginTransaction()
                     .replace(R.id.contentFragment, fragment, FRAGMENT_CHATLIST)
                     .setPrimaryNavigationFragment(fragment)
                     .commit();
-        }
+//        }
 
         mMeTopic = Cache.getTinode().getOrCreateMeTopic();
         mMeTopicListener = new MeListener();
