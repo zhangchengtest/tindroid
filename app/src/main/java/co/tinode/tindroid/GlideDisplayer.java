@@ -16,14 +16,18 @@ import com.lwkandroid.widget.ngv.NgvChildImageView;
 class GlideDisplayer implements INgvImageLoader<ImageBean>
 {
     @Override
-    public String load(ImageBean source)
+    public String load(ImageBean source, NgvChildImageView imageView1)
     {
+        imageView1.setPath(source.getImagePath());
+        imageView1.setOrder(source.getOrder()+"");
         return source.getImagePath();
     }
 
     @Override
-    public void load(String path, NgvChildImageView imageView1, int width, int height)
+    public void load(String path, NgvChildImageView imageView1)
     {
+        int width = 200;
+        int height = 200;
         ImageView imageView = imageView1.getImageContent();
         imageView1.setPath(path);
         Glide.with(imageView.getContext())

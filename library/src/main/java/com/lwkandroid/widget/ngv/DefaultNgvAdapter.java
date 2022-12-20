@@ -79,10 +79,9 @@ public class DefaultNgvAdapter<D> extends AbsNgvAdapter<ImageView, NgvChildImage
         childView.showDeleteImageView(attrOptions.isEnableEditMode());
         if (mImageLoader != null)
         {
-            String path = mImageLoader.load(data);
-            childView.setPath(path);
-            mImageLoader.load(path, childView,
-                    childView.getContentImageWidth(), childView.getContentImageHeight());
+            String path = mImageLoader.load(data, childView);
+
+            mImageLoader.load(path, childView);
         }
 
         ImageView srcImageView =  childView.getImageContent();
@@ -141,6 +140,7 @@ public class DefaultNgvAdapter<D> extends AbsNgvAdapter<ImageView, NgvChildImage
                     new String[] { ClipDescription.MIMETYPE_TEXT_PLAIN },
                     item);
 
+            dragData.addItem(new ClipData.Item((CharSequence) childView.getOrder()));
             // Instantiate the drag shadow builder.
             View.DragShadowBuilder myShadow =  new View.DragShadowBuilder(v);
 
@@ -188,7 +188,8 @@ public class DefaultNgvAdapter<D> extends AbsNgvAdapter<ImageView, NgvChildImage
                     @Override
                     public ContentInfoCompat onReceiveContent(@NonNull View target, @NonNull ContentInfoCompat source) {
                         String num = (String)target.getTag();
-                        mListener.onContentImageClicked(Integer.parseInt(num), childView.getPath(), source, childView.getContentImageWidth(), childView.getContentImageHeight());
+                        mListener.onContentImageClicked(Integer.parseInt(num), childView.getPath(), childView.getOrder(),
+                                source, childView.getContentImageWidth(), childView.getContentImageHeight());
                         //
                         return null;
                     }
@@ -212,7 +213,7 @@ public class DefaultNgvAdapter<D> extends AbsNgvAdapter<ImageView, NgvChildImage
     {
         void onPlusImageClicked(ImageView plusImageView, int dValueToLimited);
 
-        void onContentImageClicked(@NonNull int targetNum, String targetPath,  @NonNull ContentInfoCompat source, int width, int height);
+        void onContentImageClicked(@NonNull int targetNum, String targetPath, String targetOrder, @NonNull ContentInfoCompat source, int width, int height);
 
         void onImageDeleted(int position, D data);
     }

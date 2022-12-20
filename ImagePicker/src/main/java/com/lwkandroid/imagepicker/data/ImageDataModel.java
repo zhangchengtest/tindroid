@@ -270,7 +270,6 @@ public class ImageDataModel
                     imageBean.setLastModified(ImagePickerComUtils.isNotEmpty(lastModify) ? Long.valueOf(lastModify) : 0);
                     imageBean.setWidth(ImagePickerComUtils.isNotEmpty(width) ? Integer.valueOf(width) : 0);
                     imageBean.setHeight(ImagePickerComUtils.isNotEmpty(height) ? Integer.valueOf(height) : 0);
-                    imageBean.setFolderId(folderId);
                     mAllImgList.add(imageBean);
                     //更新文件夹对象
                     ImageFolderBean folderBean = null;
@@ -311,25 +310,9 @@ public class ImageDataModel
      */
     public List<ImageBean> getImagesByFolder(ImageFolderBean folderBean)
     {
-        if (folderBean == null)
-            return null;
+        ArrayList<ImageBean> resultList = new ArrayList<>();
 
-        String folderId = folderBean.getFolderId();
-        if (ImagePickerComUtils.isEquals(ImageContants.ID_ALL_IMAGE_FOLDER, folderId))
-        {
-            return mAllImgList;
-        } else
-        {
-            ArrayList<ImageBean> resultList = new ArrayList<>();
-            int size = mAllImgList.size();
-            for (int i = 0; i < size; i++)
-            {
-                ImageBean imageBean = mAllImgList.get(i);
-                if (imageBean != null && ImagePickerComUtils.isEquals(folderId, imageBean.getFolderId()))
-                    resultList.add(imageBean);
-            }
-            return resultList;
-        }
+        return resultList;
     }
 
     /**

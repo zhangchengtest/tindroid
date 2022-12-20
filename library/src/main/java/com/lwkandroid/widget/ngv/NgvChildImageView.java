@@ -27,6 +27,16 @@ public class NgvChildImageView extends ViewGroup
 
     private String path;
 
+    private String order;
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
     public NgvChildImageView(Context context)
     {
         this(context, null);

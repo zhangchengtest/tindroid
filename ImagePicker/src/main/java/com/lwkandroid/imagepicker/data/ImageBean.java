@@ -28,10 +28,17 @@ public class ImageBean implements Parcelable
      * 图片高
      */
     private int height;
-    /**
-     * 所在文件夹的id【扫描sd卡后才有的】
-     */
-    private String folderId;
+
+
+    private int order;
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
 
     public ImageBean()
     {
@@ -67,15 +74,6 @@ public class ImageBean implements Parcelable
         this.lastModified = lastModified;
     }
 
-    public String getFolderId()
-    {
-        return folderId;
-    }
-
-    public void setFolderId(String folderId)
-    {
-        this.folderId = folderId;
-    }
 
     public int getWidth()
     {
@@ -98,19 +96,6 @@ public class ImageBean implements Parcelable
     }
 
     @Override
-    public String toString()
-    {
-        return "ImageBean{" +
-                "imageId='" + imageId + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", lastModified=" + lastModified +
-                ", width=" + width +
-                ", height=" + height +
-                ", folderId='" + folderId + '\'' +
-                '}';
-    }
-
-    @Override
     public int describeContents()
     {
         return 0;
@@ -130,7 +115,6 @@ public class ImageBean implements Parcelable
         dest.writeValue(this.lastModified);
         dest.writeInt(this.width);
         dest.writeInt(this.height);
-        dest.writeString(this.folderId);
     }
 
     protected ImageBean(Parcel in)
@@ -140,7 +124,6 @@ public class ImageBean implements Parcelable
         this.lastModified = (Long) in.readValue(Long.class.getClassLoader());
         this.width = in.readInt();
         this.height = in.readInt();
-        this.folderId = in.readString();
     }
 
     public static final Creator<ImageBean> CREATOR = new Creator<ImageBean>()

@@ -11,6 +11,6 @@ public interface INgvImageLoader<D>
 {
 
 
-    public String load(D source);
-    public void load(String path, NgvChildImageView imageView, int width, int height);
+    public String load(D source, NgvChildImageView imageView);
+    public void load(String path, NgvChildImageView imageView);
 }

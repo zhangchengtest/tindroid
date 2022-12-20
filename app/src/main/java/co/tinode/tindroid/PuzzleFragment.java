@@ -37,6 +37,7 @@ import com.lwkandroid.widget.ngv.NgvChildImageView;
 import com.lwkandroid.widget.ngv.NineGridView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import co.tinode.tindroid.media.VxCard;
@@ -71,6 +72,8 @@ public class PuzzleFragment extends Fragment implements ActionMode.Callback, UiU
     private String ipStr;
 
     String chosenUrl = "";
+
+    List<Integer> orders;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -122,7 +125,7 @@ public class PuzzleFragment extends Fragment implements ActionMode.Callback, UiU
             }
 
             @Override
-            public void onContentImageClicked(@NonNull int targetNum, String targetPath, @NonNull ContentInfoCompat source, int width, int height)
+            public void onContentImageClicked(@NonNull int targetNum, String targetPath, String targetOrder, @NonNull ContentInfoCompat source, int width, int height)
             {
 
                 String tag2 = (String)source.getClip().getDescription().getLabel();
@@ -130,16 +133,29 @@ public class PuzzleFragment extends Fragment implements ActionMode.Callback, UiU
                 NgvChildImageView sourceD = (NgvChildImageView)mNineGridView.getChildAt(sourceNum);
                 String sourcePath = (String)source.getClip().getItemAt(0).getText();
 
+                String sourceOrder = (String)source.getClip().getItemAt(1).getText();
+
+                Log.e(TAG, "sourcePath "+sourcePath);
+                Log.e(TAG, "sourceOrder "+sourceOrder);
+
                 NgvChildImageView targetD = (NgvChildImageView)mNineGridView.getChildAt(targetNum);
 
-
-                Log.e("ImagePicker", "come here");
                 //target
-                imageLoader.load(sourcePath, targetD,
-                        width, height);
+                targetD.setOrder(sourceOrder);
+                imageLoader.load(sourcePath, targetD);
                 //source
-                imageLoader.load(targetPath, sourceD,
-                        width, height);
+                sourceD.setOrder(targetOrder);
+                imageLoader.load(targetPath, sourceD);
+
+                String builder = "";
+                for(int i = 0; i < mNineGridView.getChildCount(); i++){
+                    NgvChildImageView ngvChildImageView = (NgvChildImageView)mNineGridView.getChildAt(i);
+                    builder += ngvChildImageView.getOrder();
+                }
+                Log.e(TAG, "builder "+builder);
+                if(builder.equals("123456789")){
+                    Toast.makeText(getActivity(), "欧耶!我过关了", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -172,12 +188,17 @@ public class PuzzleFragment extends Fragment implements ActionMode.Callback, UiU
                 Log.e(TAG,"成功--->" + response.toString());
 
                 PeerResultVO result = GsonUtil.GsonToBean(response.toString(), PeerResultVO.class);
+                orders = result.getData().getOrders();
+                Log.e(TAG,"orders--->" +orders);
 
                 List<ImageBean> list = new ArrayList<>();
 
-                for(String str : result.getData().getPiecces()){
+                for(int i = 0; i < result.getData().getPiecces().size(); i++ ){
+                    String str = result.getData().getPiecces().get(i);
+                    Integer order = result.getData().getOrders().get(i);
                     ImageBean imageBean = new ImageBean();
 //                    imageBean.setImageId(imageId);
+                    imageBean.setOrder(order);
                     imageBean.setImagePath(str);
 //                    imageBean.setLastModified(ImagePickerComUtils.isNotEmpty(lastModify) ? Long.valueOf(lastModify) : 0);
                     imageBean.setWidth(200);
@@ -185,7 +206,6 @@ public class PuzzleFragment extends Fragment implements ActionMode.Callback, UiU
 //                    imageBean.setFolderId(folderId);
                     list.add(imageBean);
                 }
-
                 mAdapter.addDataList(list);
                 mChronometer.start();
             }
